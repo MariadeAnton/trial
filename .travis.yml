@@ -19,7 +19,6 @@ script:
 - mkdir -p ./biicode_project/blocks/Maria/trial
 - mv !(biicode_project) ./biicode_project/blocks/Maria/trial
 - cd biicode_project
-- bii find -um
 - bii cpp:build
 - ./bin/Maria_trial_main
 after_success:
