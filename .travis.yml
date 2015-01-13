@@ -16,10 +16,10 @@ install:
 script:
 - cmake --version
 - bii init biicode_project
-- mkdir -p ./biicode_project/blocks/amalulla/bcl
-- mv !(biicode_project) ./biicode_project/blocks/amalulla/bcl
+- mkdir -p ./biicode_project/blocks/Maria/trial
+- mv !(biicode_project) ./biicode_project/blocks/Maria/trial
 - cd biicode_project
-- bii find
+- bii find -um
 - bii cpp:build
 - ./bin/Maria_trial_main
 after_success:
