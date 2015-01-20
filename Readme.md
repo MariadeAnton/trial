@@ -8,3 +8,5 @@ got TRAVIS_TAG and shown, build success but no release to biicode
 #2. fix .travis.yml 
 accidentaly added an extra character
 #3. fix .travis.yml related to biicode
+#4. fix password
+#5. fix biicode parents
