@@ -22,11 +22,11 @@ script:
 - bii cpp:build
 - ./bin/Maria_trial_main
 after_success:
-- if [[ "$TRAVIS_TAG" != "none" ]]; then echo "Getting tag $TRAVIS_TAG"; fi
+- if [[ "$TRAVIS_TAG" = "none" ]]; then echo "Can't get tag $TRAVIS_TAG";
+- echo ""Getting tag $TRAVIS_TAG
 - bii user Maria -p $BII_MARIA_PASSWORD
 - bii publish --tag STABLE --versiontag=$TRAVIS_TAG
-
+- exit 0; fi
 env:
   global:
-    secure: QQwn/ytULZHvBGlxT/cCKZ7vRHO6sXiuAcZfGApOgK3WyLJ1PGdcZEcRlAJRKwm8KDQ+Li6Q3kRIZeef0Sv8jsfQLS3XkZUnM5crtAfUZonP+1QgUcVmgPgpZXXc30eZ02TVWUKgDfc2vavAPamGEG53eWqXEBvQE8uhsUmrtCU=
-
+    secure: A8R679/naORNh7D0Myj0zHbPgdEvxUYFlIeAvKAwA4yxMXjE9NiNe18xTYqmGb/p4wG/diKMCn+WMJ34iHdNR5VQEQnZonImBsflRwzASBxGDofM+RFDCmVFfBYBQcIWm5nvvRgy05DCQg+g57nRklqXTE38W67i2/6pwwmBvrU=
