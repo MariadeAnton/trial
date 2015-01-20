@@ -33,8 +33,10 @@ test_script:
 
 # to run your custom scripts instead of provider deployments
 deploy_script:
+  - if defined APPVEYOR_REPO_TAG_NAME set VERSION=%APPVEYOR_REPO_TAG_NAME:~0%
+  - echo "Building tagged release %VERSION%"
   - cmd: bii user %block_user% -p %secured_passwd%
-  - cmd: bii publish --tag=%tag% --versiontag=APPVEYOR_REPO_TAG_NAME || dir # Ignore output
+  - cmd: bii publish --tag=%tag% --versiontag=%VERSION% #|| dir # Ignore output
 
 environment:
   project_name:
@@ -47,4 +49,5 @@ environment:
     secure: ZMvgETfLAUo7kISnvrinBA==
   tag:
     "STABLE"
+
 
