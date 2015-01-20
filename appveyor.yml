@@ -25,7 +25,8 @@ before_build:
   - cmd: bii cpp:configure -G "Visual Studio 12"
 
 build_script:
-  - if defined APPVEYOR_REPO_TAG_NAME set version_tag=%APPVEYOR_REPO_TAG_NAME%
+  - if defined APPVEYOR_REPO_TAG_NAME set VERSION=%APPVEYOR_REPO_TAG_NAME:~1%
+  - echo "Building tagged release %VERSION%"
   - cmd: bii cpp:build
 
 test_script:
@@ -35,7 +36,7 @@ test_script:
 # to run your custom scripts instead of provider deployments
 deploy_script:
   - cmd: bii user %block_user% -p %secured_passwd%
-  - cmd: bii publish --tag=%tag% --versiontag=%version_tag%|| dir # Ignore output
+  - cmd: bii publish --tag=%tag% --versiontag=%VERSION%|| dir # Ignore output
 
 environment:
   project_name:
