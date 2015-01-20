@@ -22,7 +22,7 @@ script:
 - bii cpp:build
 - ./bin/Maria_trial_main
 after_success:
-- if [[ "$TRAVIS_TAG" != "none" ]]; then echo "Getting tag $TRAVIS_TAG"; exit 0; fi
+- if [[ "$TRAVIS_TAG" != "none" ]]; then echo "Getting tag $TRAVIS_TAG";
 - bii user Maria -p $BII_GMARIA_PASSWORD
 - bii publish --tag STABLE --versiontag=$TRAVIS_TAG
 
