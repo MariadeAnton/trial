@@ -34,7 +34,7 @@ test_script:
 # to run your custom scripts instead of provider deployments
 deploy_script:
   - cmd: bii user %block_user% -p %secured_passwd%
-  - cmd: bii publish --tag=%tag% --versiontag=$APPVEYOR_REPO_TAG_NAME || dir # Ignore output
+  - cmd: bii publish --tag=%tag% --versiontag=%APPVEYOR_REPO_TAG_NAME% || dir # Ignore output
 
 environment:
   project_name:
