@@ -10,3 +10,5 @@ accidentaly added an extra character
 #3. fix .travis.yml related to biicode
 #4. fix password
 #5. fix biicode parents
+#6. no tag publishing 
+check what happens
