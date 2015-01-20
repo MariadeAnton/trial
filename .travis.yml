@@ -22,7 +22,7 @@ script:
 - bii cpp:build
 - ./bin/Maria_trial_main
 after_success:
-- echo ""Getting tag $TRAVIS_TAG
+- echo "Getting tag $TRAVIS_TAG"
 - bii user Maria -p $BII_MARIA_PASSWORD
 - bii publish --tag STABLE --versiontag=$TRAVIS_TAG
 
