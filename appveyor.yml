@@ -1,5 +1,11 @@
 version: 1.0.{build}
 
+branches:
+  only: CI/appveyor
+
+skip_commits:
+  message: /Updated biicode parents/
+
 install:
   - ps: wget https://s3.amazonaws.com/biibinaries/thirdparty/cmake-3.0.2-win32-x86.zip -OutFile cmake.zip
   - cmd: echo "Unzipping cmake..."
@@ -33,9 +39,10 @@ test_script:
 
 # to run your custom scripts instead of provider deployments
 deploy_script:
+  - if defined APPVEYOR_REPO_TAG_NAME set VERSION=%APPVEYOR_REPO_TAG_NAME%
+  - echo "Building tagged release %VERSION%"
+  - if not defined APPVEYOR_REPO_TAG_NAME set VERSION=%no_version%
   - cmd: bii user %block_user% -p %secured_passwd%
-  - if defined APPVEYOR_REPO_TAG_NAME set VERSION=%APPVEYOR_REPO_TAG_NAME%; then echo "Building tagged release %VERSION%"
-  - if not defined APPVEYOR_REPO_TAG_NAME set VERSION=%no_version% ; then echo "Building a DEV release"
   - cmd: bii publish --tag=%tag% --versiontag=%VERSION% #|| dir # Ignore output
 
 environment:
@@ -49,6 +56,5 @@ environment:
     secure: ZMvgETfLAUo7kISnvrinBA==
   tag:
     "STABLE"
-  no version:
+  no_version:
     ""
-
