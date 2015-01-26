@@ -1,7 +1,8 @@
 version: 1.0.{build}
 
 branches:
-  only: "CI/appveyor"
+  only: 
+    - CI/appveyor
 
 skip_commits:
   message: /Updated biicode parents/
