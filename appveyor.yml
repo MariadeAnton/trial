@@ -41,9 +41,8 @@ test_script:
 # to run your custom scripts instead of provider deployments
 deploy_script:
   - cmd: bii user %block_user% -p %secured_passwd%
-  - if defined APPVEYOR_REPO_TAG_NAME set VERSION=%APPVEYOR_REPO_TAG_NAME%
-  - echo "Building tagged release %VERSION%"
-  - if not defined APPVEYOR_REPO_TAG_NAME set VERSION=%no_version%
+  - if defined APPVEYOR_REPO_TAG_NAME set VERSION=%APPVEYOR_REPO_TAG_NAME% echo "Building tagged release %VERSION%"
+  - if not defined APPVEYOR_REPO_TAG_NAME set VERSION=%no_version%; then echo "Building UNtagged release %VERSION%"
   - cmd: bii publish --tag=%tag% --versiontag=%VERSION% #|| dir # Ignore output
 
 environment:
