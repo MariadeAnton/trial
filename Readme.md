@@ -3,5 +3,5 @@
 #Trial
 Just a trial repo where I experiment with git and biicode tags.
 
-#1. working
-just another last trial with no tag
+#1. Appveyor
+    - Not sure about github deployment - cheking it out
