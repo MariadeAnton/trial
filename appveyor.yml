@@ -38,11 +38,21 @@ test_script:
   - cmd: cd bin
   - cmd: Maria_trial_main.exe
 
+deploy:
+  - provider: GitHub
+    auth_token:%github_token%
+    draft: false
+    prerelease: false
+    on:
+      branch: CI/appveyor            # release from CI/appveyor branch only
+      appveyor_repo_tag: true        # deploy on tag push only
+
 # to run your custom scripts instead of provider deployments
 deploy_script:
   - cmd: bii user %block_user% -p %secured_passwd%
-  - if defined APPVEYOR_REPO_TAG_NAME set VERSION=%APPVEYOR_REPO_TAG_NAME% echo "Building tagged release %VERSION%"
-  - if not defined APPVEYOR_REPO_TAG_NAME set VERSION=%no_version% echo "Building UNtagged release %VERSION%"
+  - if defined APPVEYOR_REPO_TAG_NAME set VERSION=%APPVEYOR_REPO_TAG_NAME%  
+  - echo "Building tagged release %VERSION%"
+  - if not defined APPVEYOR_REPO_TAG_NAME set VERSION=%no_version%
   - cmd: bii publish --tag=%tag% --versiontag=%VERSION% #|| dir # Ignore output
 
 environment:
@@ -54,6 +64,8 @@ environment:
     "trial"
   secured_passwd:
     secure: ZMvgETfLAUo7kISnvrinBA==
+  github_token:
+    secure: s7IoFbHLebmL2SBjEH7VOKfO8VYsZmvklqb3NcN11+G+jXui5Dx4T5eEO97o0lEj
   tag:
     "STABLE"
   no_version:
