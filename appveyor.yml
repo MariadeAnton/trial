@@ -40,7 +40,8 @@ test_script:
 
 deploy:
   - provider: GitHub
-    auth_token: %github_token%
+    auth_token:
+      secure: s7IoFbHLebmL2SBjEH7VOKfO8VYsZmvklqb3NcN11+G+jXui5Dx4T5eEO97o0lEj
     draft: false
     prerelease: false
     on:
@@ -64,8 +65,6 @@ environment:
     "trial"
   secured_passwd:
     secure: ZMvgETfLAUo7kISnvrinBA==
-  github_token:
-    secure: s7IoFbHLebmL2SBjEH7VOKfO8VYsZmvklqb3NcN11+G+jXui5Dx4T5eEO97o0lEj
   tag:
     "STABLE"
   no_version:
